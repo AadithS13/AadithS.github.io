@@ -97,8 +97,8 @@ const projects = [
       "Reverse-engineers MahaRERA APIs, performs incremental synchronization, tracks project-level changes through snapshot diffing, and exposes search APIs over normalized real-estate data.",
     stack: ["Go", "PostgreSQL", "Docker", "REST APIs", "Cron", "Data Engineering"],
     github: "https://github.com/AadithS13/InfraLens",
-    image: "/projects/infralens-crawler.png",
-    imageAlt: "InfraLens crawler interface",
+    image: "/projects/infralens-placeholder.svg",
+    imageAlt: "InfraLens pipeline architecture",
     highlights: [
       "Reverse-engineered undocumented MahaRERA APIs for incremental data sync",
       "Snapshot diffing to detect and track project-level changes over time",
@@ -143,7 +143,7 @@ export default function Home() {
       <Sidebar />
 
       {/* Main content */}
-      <main className="md:ml-56 flex-1 px-6 md:px-14 lg:px-20 py-14 md:py-16 pt-20 md:pt-16 max-w-3xl">
+      <main className="md:ml-56 flex-1 px-8 md:px-14 lg:px-20 py-14 md:py-16 pt-20 md:pt-16">
 
         {/* ── About ─────────────────────────────────────────── */}
         <section id="about" className="mb-20 scroll-mt-8">
@@ -335,12 +335,12 @@ export default function Home() {
             <div className="flex items-center gap-3 text-sm">
               <Linkedin size={15} className="text-muted flex-shrink-0" />
               <a
-                href="https://linkedin.com/in/aadith-s"
+                href="https://www.linkedin.com/in/aadith-suresh/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-subtle hover:text-text transition-colors"
               >
-                linkedin.com/in/aadith-s
+                linkedin.com/in/aadith-suresh
               </a>
             </div>
           </div>

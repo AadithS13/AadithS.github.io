@@ -1,0 +1,69 @@
+<svg width="1200" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="500" fill="#0f0f0f"/>
+
+  <!-- Grid lines -->
+  <line x1="0" y1="100" x2="1200" y2="100" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="0" y1="300" x2="1200" y2="300" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="500" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="500" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="500" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="500" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="1000" y1="0" x2="1000" y2="500" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- MahaRERA box -->
+  <rect x="60" y="180" width="160" height="60" rx="6" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="140" y="207" font-family="monospace" font-size="11" fill="#555" text-anchor="middle">MahaRERA</text>
+  <text x="140" y="224" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">API Source</text>
+
+  <!-- Arrow to Crawler -->
+  <line x1="220" y1="210" x2="300" y2="210" stroke="#2a2a2a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Crawler box -->
+  <rect x="300" y="170" width="160" height="80" rx="6" fill="#111" stroke="#4ade8033" stroke-width="1"/>
+  <text x="380" y="202" font-family="monospace" font-size="11" fill="#4ade80" text-anchor="middle">Crawler</text>
+  <text x="380" y="220" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">Incremental Sync</text>
+  <text x="380" y="236" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">Dedup Logic</text>
+
+  <!-- Arrow to Diff Engine -->
+  <line x1="460" y1="210" x2="540" y2="210" stroke="#2a2a2a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Diff Engine -->
+  <rect x="540" y="170" width="160" height="80" rx="6" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="620" y="202" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Snapshot Diff</text>
+  <text x="620" y="220" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">Change Detection</text>
+  <text x="620" y="236" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">History Tracking</text>
+
+  <!-- Arrow to Postgres -->
+  <line x1="700" y1="210" x2="780" y2="210" stroke="#2a2a2a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- PostgreSQL -->
+  <rect x="780" y="170" width="140" height="80" rx="6" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="850" y="202" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">PostgreSQL</text>
+  <text x="850" y="220" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">Normalized</text>
+  <text x="850" y="236" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">Real-estate Data</text>
+
+  <!-- Arrow to Search API -->
+  <line x1="920" y1="210" x2="1000" y2="210" stroke="#2a2a2a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Search API -->
+  <rect x="1000" y="170" width="140" height="80" rx="6" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1070" y="202" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Search API</text>
+  <text x="1070" y="220" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">REST Endpoints</text>
+  <text x="1070" y="236" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">Query Interface</text>
+
+  <!-- Cron label below crawler -->
+  <text x="380" y="290" font-family="monospace" font-size="10" fill="#333" text-anchor="middle">cron-driven</text>
+
+  <!-- Title -->
+  <text x="60" y="60" font-family="monospace" font-size="13" fill="#4ade80" font-weight="500">InfraLens</text>
+  <text x="60" y="80" font-family="monospace" font-size="10" fill="#333">Construction Intelligence Platform — Data Pipeline Architecture</text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#2a2a2a"/>
+    </marker>
+  </defs>
+</svg>

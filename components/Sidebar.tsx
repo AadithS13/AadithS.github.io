@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   Github,
   Linkedin,
@@ -52,8 +53,15 @@ export default function Sidebar() {
       <aside className="hidden md:flex fixed left-0 top-0 h-screen w-56 border-r border-border bg-surface flex-col p-6 z-40">
         {/* Avatar + name */}
         <div className="mb-8">
-          <div className="w-16 h-16 rounded-full bg-muted mb-4 flex items-center justify-center text-base font-semibold text-bg select-none">
-            AS
+          <div className="w-16 h-16 rounded-full overflow-hidden mb-4 ring-1 ring-border">
+            <Image
+              src="/profile.jpeg"
+              alt="Aadith S"
+              width={64}
+              height={64}
+              className="object-cover w-full h-full"
+              unoptimized
+            />
           </div>
           <p className="text-sm font-semibold text-text leading-snug">
             Aadith S
@@ -64,7 +72,7 @@ export default function Sidebar() {
         {/* Social icons */}
         <div className="flex items-center gap-4 mb-8">
           <a
-            href="https://linkedin.com/in/aadith-s"
+            href="https://www.linkedin.com/in/aadith-suresh/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted hover:text-text transition-colors"
