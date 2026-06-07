@@ -21,7 +21,7 @@ const experience = [
       },
       {
         heading: "Deal Mining Flow",
-        body: "TDD author & lead — ingested RERA and external data sources, built automated pipeline to generate leads, identify new customers, infer project stage to predict product needs, and assign cross-sell deals to BU sales officers. +15% lead generation, +5–10% deal conversion.",
+        body: "TDD author & lead — ingested RERA and external data sources, built automated pipeline to generate leads, identify new customers, infer project stage, and assign cross-sell deals to BU sales officers. +15% lead generation, +5–10% deal conversion.",
       },
     ],
   },
@@ -81,8 +81,10 @@ const projects = [
       "Construction intelligence platform with incremental crawling, change detection, historical tracking, and analytics APIs.",
     description:
       "Construction intelligence platform that reverse-engineers public RERA registries, performs idempotent incremental synchronization, tracks project-level changes, and exposes search and analytics APIs over normalized real-estate data.",
+    badges: ["Go", "PostgreSQL", "Docker", "Data Engineering"],
     stack: ["Go", "PostgreSQL", "Docker", "REST APIs", "Cron", "Data Engineering"],
     github: "https://github.com/AadithS13/InfraLens",
+    architecture: "/projects/infralens-placeholder.svg",
     image: "/projects/infralens-placeholder.svg",
     imageAlt: "InfraLens pipeline architecture",
     highlights: [
@@ -99,8 +101,10 @@ const projects = [
       "Kafka-powered workflow engine with retries, DLQ processing, idempotency, and production-grade observability.",
     description:
       "Distributed workflow orchestration platform built with Go and Kafka, featuring retries, DLQ handling, idempotent processing, observability, and fault-tolerant order processing.",
+    badges: ["Go", "Kafka", "Prometheus", "Grafana"],
     stack: ["Go", "Kafka", "PostgreSQL", "Prometheus", "Grafana", "Docker"],
     github: "https://github.com/AadithS13/FlowOrchestrator",
+    architecture: "/projects/floworchestrator-grafana.png",
     image: "/projects/floworchestrator-grafana.png",
     imageAlt: "FlowOrchestrator Grafana dashboard",
     highlights: [
@@ -152,7 +156,7 @@ const interests = [
 function SectionHeading({ title }: { title: string }) {
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-semibold text-text">{title}</h2>
+      <h2 className="text-3xl font-semibold text-text">{title}</h2>
       <div className="w-10 h-0.5 bg-green mt-2" />
     </div>
   );
@@ -164,19 +168,20 @@ export default function Home() {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <main className="md:ml-56 flex-1 px-8 md:px-14 lg:px-20 py-14 md:py-16 pt-20 md:pt-16">
+      {/* md:ml-64 matches the new w-64 sidebar */}
+      <main className="md:ml-64 flex-1 px-8 md:px-14 lg:px-20 py-14 md:py-16 pt-20 md:pt-16">
 
         {/* ── About ─────────────────────────────────────────── */}
         <section id="about" className="mb-20 scroll-mt-8">
           <SectionHeading title="About" />
 
           {/* Hero tagline */}
-          <p className="text-lg text-text font-medium leading-snug mb-5">
+          <p className="text-xl text-text font-medium leading-snug mb-5">
             I build backend systems that process events, track changes, and turn
             data into decisions.
           </p>
 
-          <p className="text-subtle leading-relaxed">
+          <p className="text-base text-subtle leading-relaxed">
             I&apos;m <span className="text-text font-medium">Aadith S</span>, a
             Bengaluru-based backend software engineer with ~3 years of experience
             designing and managing event-driven microservices. I&apos;ve authored
@@ -194,45 +199,13 @@ export default function Home() {
             {currentlyBuilding.map((item, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 text-sm text-subtle leading-relaxed"
+                className="flex items-start gap-3 text-base text-subtle leading-relaxed"
               >
                 <span className="text-green mt-1 flex-shrink-0">•</span>
                 {item}
               </li>
             ))}
           </ul>
-        </section>
-
-        {/* ── Experience ────────────────────────────────────── */}
-        <section id="experience" className="mb-20 scroll-mt-8">
-          <SectionHeading title="Experience" />
-          <div className="space-y-10">
-            {experience.map((job, i) => (
-              <div key={i}>
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
-                  <div>
-                    <h3 className="text-base font-semibold text-text">{job.role}</h3>
-                    <p className="text-sm text-subtle">{job.company}</p>
-                  </div>
-                  <div className="sm:text-right flex-shrink-0">
-                    <p className="text-xs font-mono text-muted">{job.period}</p>
-                    <p className="text-xs text-muted">{job.location}</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  {job.items.map((item, j) => (
-                    <div key={j}>
-                      <p className="text-sm text-text font-medium">{item.heading}:</p>
-                      <p className="text-sm text-subtle leading-relaxed mt-0.5">{item.body}</p>
-                    </div>
-                  ))}
-                </div>
-                {i < experience.length - 1 && (
-                  <div className="mt-8 border-t border-border" />
-                )}
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* ── Projects ──────────────────────────────────────── */}
@@ -244,7 +217,8 @@ export default function Home() {
                 key={project.name}
                 className="group border border-border rounded-lg overflow-hidden bg-surface hover:border-muted transition-colors"
               >
-                <div className="relative w-full h-48 overflow-hidden bg-bg border-b border-border">
+                {/* Screenshot */}
+                <div className="relative w-full h-52 overflow-hidden bg-bg border-b border-border">
                   <Image
                     src={project.image}
                     alt={project.imageAlt}
@@ -253,48 +227,101 @@ export default function Home() {
                     unoptimized
                   />
                 </div>
-                <div className="p-5">
-                  <div className="flex items-start justify-between gap-3 mb-2">
+
+                <div className="p-6">
+                  {/* Title row */}
+                  <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
-                      <h3 className="text-base font-semibold text-text flex items-center gap-2">
+                      <h3 className="text-lg font-semibold text-text flex items-center gap-2">
                         <span>{project.emoji}</span> {project.name}
                       </h3>
-                      <p className="text-sm text-subtle mt-0.5 leading-snug">
+                      <p className="text-base text-subtle mt-0.5 leading-snug">
                         {project.tagline}
                       </p>
                     </div>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted hover:text-text transition-colors flex-shrink-0 mt-0.5"
-                      aria-label={`${project.name} on GitHub`}
-                    >
-                      <Github size={16} />
-                    </a>
                   </div>
-                  <p className="text-xs text-muted leading-relaxed mb-4">
+
+                  {/* Description */}
+                  <p className="text-sm text-muted leading-relaxed mb-4">
                     {project.description}
                   </p>
-                  <ul className="space-y-1 mb-4">
+
+                  {/* Highlights */}
+                  <ul className="space-y-1.5 mb-5">
                     {project.highlights.map((h) => (
-                      <li key={h} className="flex items-start gap-2 text-xs text-subtle">
+                      <li key={h} className="flex items-start gap-2 text-sm text-subtle">
                         <span className="text-green mt-0.5 flex-shrink-0">›</span>
                         {h}
                       </li>
                     ))}
                   </ul>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.stack.map((t) => (
+
+                  {/* Badges row */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.badges.map((b) => (
                       <span
-                        key={t}
-                        className="text-xs font-mono text-muted border border-border px-2 py-0.5 rounded"
+                        key={b}
+                        className="text-xs font-mono text-subtle border border-border px-2.5 py-1 rounded-full"
                       >
-                        {t}
+                        {b}
                       </span>
                     ))}
                   </div>
+
+                  {/* Buttons row */}
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-sm text-subtle border border-border px-3.5 py-1.5 rounded hover:border-muted hover:text-text transition-colors"
+                    >
+                      <Github size={14} />
+                      GitHub
+                    </a>
+                    <a
+                      href={project.architecture}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-sm text-subtle border border-border px-3.5 py-1.5 rounded hover:border-muted hover:text-text transition-colors"
+                    >
+                      Architecture
+                      <ArrowUpRight size={13} />
+                    </a>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Experience ────────────────────────────────────── */}
+        <section id="experience" className="mb-20 scroll-mt-8">
+          <SectionHeading title="Experience" />
+          <div className="space-y-10">
+            {experience.map((job, i) => (
+              <div key={i}>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
+                  <div>
+                    <h3 className="text-lg font-semibold text-text">{job.role}</h3>
+                    <p className="text-base text-subtle">{job.company}</p>
+                  </div>
+                  <div className="sm:text-right flex-shrink-0">
+                    <p className="text-sm font-mono text-muted">{job.period}</p>
+                    <p className="text-sm text-muted">{job.location}</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {job.items.map((item, j) => (
+                    <div key={j}>
+                      <p className="text-base text-text font-medium">{item.heading}:</p>
+                      <p className="text-base text-subtle leading-relaxed mt-0.5">{item.body}</p>
+                    </div>
+                  ))}
+                </div>
+                {i < experience.length - 1 && (
+                  <div className="mt-8 border-t border-border" />
+                )}
               </div>
             ))}
           </div>
@@ -310,24 +337,24 @@ export default function Home() {
                 className="border border-border rounded-lg p-5 bg-surface hover:border-muted transition-colors"
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <h3 className="text-sm font-semibold text-text">{item.title}</h3>
+                  <h3 className="text-base font-semibold text-text">{item.title}</h3>
                   <a
                     href={item.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs font-mono text-muted hover:text-text transition-colors flex-shrink-0"
+                    className="flex items-center gap-1 text-sm font-mono text-muted hover:text-text transition-colors flex-shrink-0"
                   >
-                    {item.repoLabel} <ArrowUpRight size={11} />
+                    {item.repoLabel} <ArrowUpRight size={12} />
                   </a>
                 </div>
-                <p className="text-sm text-subtle leading-relaxed mb-3">
+                <p className="text-base text-subtle leading-relaxed mb-3">
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map((t) => (
                     <span
                       key={t}
-                      className="text-xs font-mono text-muted border border-border px-2 py-0.5 rounded"
+                      className="text-xs font-mono text-muted border border-border px-2.5 py-1 rounded-full"
                     >
                       {t}
                     </span>
@@ -344,14 +371,14 @@ export default function Home() {
           <div className="space-y-5">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className="flex flex-col sm:flex-row gap-2 sm:gap-8">
-                <p className="text-xs font-mono text-muted uppercase tracking-wider w-full sm:w-44 flex-shrink-0 pt-0.5">
+                <p className="text-sm font-mono text-muted uppercase tracking-wider w-full sm:w-48 flex-shrink-0 pt-0.5">
                   {category}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {items.map((item) => (
                     <span
                       key={item}
-                      className="text-xs font-mono text-subtle border border-border px-2.5 py-1 rounded"
+                      className="text-sm font-mono text-subtle border border-border px-3 py-1 rounded"
                     >
                       {item}
                     </span>
@@ -380,42 +407,42 @@ export default function Home() {
         {/* ── Contact ───────────────────────────────────────── */}
         <section id="contact" className="mb-16 scroll-mt-8">
           <SectionHeading title="Contact" />
-          <p className="text-sm text-subtle mb-8 leading-relaxed">
+          <p className="text-base text-subtle mb-8 leading-relaxed">
             Open to backend engineering roles and interesting technical
             conversations. Usually respond same day.
           </p>
           <div className="space-y-4">
-            <div className="flex items-center gap-3 text-sm">
-              <MapPin size={15} className="text-muted flex-shrink-0" />
-              <span className="text-subtle">Bengaluru, India</span>
+            <div className="flex items-center gap-3">
+              <MapPin size={16} className="text-muted flex-shrink-0" />
+              <span className="text-base text-subtle">Bengaluru, India</span>
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Mail size={15} className="text-muted flex-shrink-0" />
+            <div className="flex items-center gap-3">
+              <Mail size={16} className="text-muted flex-shrink-0" />
               <a
                 href="mailto:aadithsuresh10@gmail.com"
-                className="text-subtle hover:text-text transition-colors"
+                className="text-base text-subtle hover:text-text transition-colors"
               >
                 aadithsuresh10@gmail.com
               </a>
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Github size={15} className="text-muted flex-shrink-0" />
+            <div className="flex items-center gap-3">
+              <Github size={16} className="text-muted flex-shrink-0" />
               <a
                 href="https://github.com/AadithS13"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-subtle hover:text-text transition-colors"
+                className="text-base text-subtle hover:text-text transition-colors"
               >
                 github.com/AadithS13
               </a>
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Linkedin size={15} className="text-muted flex-shrink-0" />
+            <div className="flex items-center gap-3">
+              <Linkedin size={16} className="text-muted flex-shrink-0" />
               <a
                 href="https://www.linkedin.com/in/aadith-suresh/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-subtle hover:text-text transition-colors"
+                className="text-base text-subtle hover:text-text transition-colors"
               >
                 linkedin.com/in/aadith-suresh
               </a>
