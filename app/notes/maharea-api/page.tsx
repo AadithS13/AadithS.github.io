@@ -219,13 +219,13 @@ getProjectGeneralDetailsByProjectId`}</Pre>
           service names effectively documented the backend architecture.
         </P>
 
-        {/* DevTools screenshot placeholder — replace src once saved */}
+        {/* DevTools screenshot — save the network tab image from the chat as infralens-devtools.png */}
         <ArticleImage
           src="/projects/infralens-devtools.png"
-          alt="Chrome DevTools Network tab showing MahaRERA API requests including getProjectGeneralDetailsByProjectId"
-          caption="Chrome DevTools — MahaRERA's internal POST requests visible in the Network tab"
-          width={1120}
-          height={951}
+          alt="Chrome DevTools Network tab showing MahaRERA API requests including getProjectGeneralDetailsByProjectId and the raw JSON response"
+          caption="Chrome DevTools — 186 internal POST requests fired on a single project page load. getProjectGeneralDetailsByProjectId highlighted with raw responseObject visible."
+          width={1110}
+          height={940}
         />
 
         <Divider />
@@ -344,13 +344,12 @@ const rateDelay = 300 * time.Millisecond`}</Pre>
           repeated crawls idempotent and prevents duplicate records.
         </P>
 
-        {/* ER Diagram placeholder — replace src once saved */}
         <ArticleImage
           src="/projects/infralens-er-diagram.png"
-          alt="InfraLens ER diagram showing projects, promoters, addresses, snapshots, and change history tables"
+          alt="InfraLens ER diagram — PROMOTERS owns PROJECTS, which has CONTACTS, stores PROJECT_SNAPSHOTS, generates PROJECT_CHANGES, and links to ADDRESSES"
           caption="Normalized schema used by InfraLens for projects, promoters, snapshots and change history."
-          width={1200}
-          height={700}
+          width={1060}
+          height={1100}
         />
 
         <Divider />
