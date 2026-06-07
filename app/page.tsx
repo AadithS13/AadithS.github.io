@@ -177,8 +177,8 @@ export default function Home() {
 
           {/* Hero tagline */}
           <p className="text-xl text-text font-medium leading-snug mb-5">
-            I build backend systems that process events, track changes, and turn
-            data into decisions.
+            Backend Engineer building distributed systems, data platforms, and
+            workflow automation using Go.
           </p>
 
           <p className="text-base text-subtle leading-relaxed">
