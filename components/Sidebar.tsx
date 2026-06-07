@@ -14,6 +14,7 @@ import {
   Hammer,
   GitMerge,
   Sparkles,
+  BookOpen,
 } from "lucide-react";
 
 const navItems = [
@@ -22,6 +23,7 @@ const navItems = [
   { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "experience", label: "Experience", icon: Briefcase },
   { id: "oss", label: "Open Source", icon: GitMerge },
+  { id: "notes", label: "Eng. Notes", icon: BookOpen },
   { id: "skills", label: "Skills", icon: Code2 },
   { id: "interests", label: "Interests", icon: Sparkles },
   { id: "contact", label: "Contact", icon: Phone },

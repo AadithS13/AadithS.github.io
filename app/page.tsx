@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Github, Mail, Linkedin, MapPin, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { Github, Mail, Linkedin, MapPin, ArrowUpRight, BookOpen } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 
 /* ─── Data ───────────────────────────────────────────────────── */
@@ -132,6 +133,17 @@ const oss = [
     description:
       "Active contributor to GoFr — an opinionated Go framework for building microservices.",
     tags: ["Go", "Microservices", "Open Source"],
+  },
+];
+
+const notes = [
+  {
+    title: "How I Reverse Engineered MahaRERA's Internal APIs",
+    slug: "/notes/maharea-api",
+    description:
+      "A walkthrough of how I reverse engineered MahaRERA's undocumented internal APIs to build InfraLens — covering recon, crawler design, snapshot diffing, and change detection.",
+    tags: ["Go", "Data Engineering", "Reverse Engineering", "InfraLens"],
+    status: "draft" as const,
   },
 ];
 
@@ -361,6 +373,47 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Engineering Notes ─────────────────────────────── */}
+        <section id="notes" className="mb-20 scroll-mt-8">
+          <SectionHeading title="Engineering Notes" />
+          <div className="space-y-4">
+            {notes.map((note) => (
+              <Link
+                key={note.slug}
+                href={note.slug}
+                className="group flex flex-col border border-border rounded-lg p-5 bg-surface hover:border-muted transition-colors"
+              >
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2">
+                    <BookOpen size={15} className="text-muted flex-shrink-0 mt-0.5" />
+                    <h3 className="text-base font-semibold text-text group-hover:text-white transition-colors">
+                      {note.title}
+                    </h3>
+                  </div>
+                  {note.status === "draft" && (
+                    <span className="text-xs font-mono text-muted border border-border px-2 py-0.5 rounded flex-shrink-0">
+                      draft
+                    </span>
+                  )}
+                </div>
+                <p className="text-base text-subtle leading-relaxed mb-4 pl-6">
+                  {note.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5 pl-6">
+                  {note.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs font-mono text-muted border border-border px-2.5 py-1 rounded-full"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </Link>
             ))}
           </div>
         </section>
