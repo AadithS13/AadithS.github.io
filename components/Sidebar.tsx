@@ -72,8 +72,14 @@ export default function Sidebar() {
           <p className="text-base font-semibold text-text leading-snug mb-0.5">
             Aadith S
           </p>
-          <p className="text-sm text-subtle">Backend Engineer</p>
-          <p className="text-xs text-muted mt-1 leading-relaxed">
+          <p className="text-sm text-subtle mb-2">Backend Engineer</p>
+          <p className="text-xs text-muted leading-relaxed">
+            Currently&nbsp;@&nbsp;<span className="text-subtle">Unifize</span>
+          </p>
+          <p className="text-xs text-muted leading-relaxed mb-2">
+            Previously&nbsp;@&nbsp;<span className="text-subtle">Infra.Market</span>
+          </p>
+          <p className="text-xs text-muted leading-relaxed">
             Go&nbsp;•&nbsp;Distributed Systems&nbsp;•&nbsp;Data Engineering
           </p>
         </div>
