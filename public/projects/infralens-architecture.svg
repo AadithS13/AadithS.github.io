@@ -1,0 +1,175 @@
+<svg width="760" height="1020" xmlns="http://www.w3.org/2000/svg">
+  <rect width="760" height="1020" fill="#0a0a0a"/>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,1 L7,4 L0,7 Z" fill="#2d2d2d"/>
+    </marker>
+  </defs>
+
+  <!-- ══ SCHEDULER (left column) ════════════════════════════ -->
+  <rect x="20" y="172" width="155" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="97" y="191" font-family="monospace" font-size="11" fill="#4ade80" text-anchor="middle">Scheduler</text>
+  <text x="97" y="207" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">robfig/cron</text>
+
+  <rect x="20" y="268" width="155" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="97" y="287" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">crawl_run</text>
+  <text x="97" y="303" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">record created</text>
+
+  <!-- Scheduler → crawl_run -->
+  <line x1="97" y1="216" x2="97" y2="266" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Scheduler → Crawler (horizontal) -->
+  <line x1="175" y1="194" x2="240" y2="194" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="207" y="188" font-family="monospace" font-size="8" fill="#3a3a3a" text-anchor="middle">triggers</text>
+
+  <!-- crawl_run → Crawler -->
+  <line x1="175" y1="290" x2="220" y2="258" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ══ MAIN COLUMN (center x=380) ══════════════════════════ -->
+
+  <!-- A: MahaRERA -->
+  <rect x="240" y="20" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="39" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">MahaRERA Public API</text>
+  <text x="370" y="55" font-family="monospace" font-size="9" fill="#444" text-anchor="middle">maharerait.maharashtra.gov.in</text>
+
+  <!-- A → B -->
+  <line x1="370" y1="64" x2="370" y2="88" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- B: Auth Layer -->
+  <rect x="240" y="90" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="109" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Auth Layer</text>
+  <text x="370" y="125" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">Keycloak JWT · TTL 100min · RWMutex</text>
+
+  <!-- B → C -->
+  <line x1="370" y1="134" x2="370" y2="158" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- C: Crawler (accent border) -->
+  <rect x="240" y="160" width="260" height="54" rx="5" fill="#0f1a0f" stroke="#4ade8055" stroke-width="1.5"/>
+  <text x="370" y="181" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="500">Crawler</text>
+  <text x="370" y="199" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">Go · Sequential ID range · 1 → N</text>
+  <text x="370" y="211" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">skips 404s · upserts by maha_id</text>
+
+  <!-- C → D -->
+  <line x1="370" y1="214" x2="370" y2="248" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- D: Worker Pool -->
+  <rect x="240" y="250" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="269" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Worker Pool</text>
+  <text x="370" y="285" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">5 goroutines · buffered job channel</text>
+
+  <!-- D → E -->
+  <line x1="370" y1="294" x2="370" y2="318" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- E: Rate Limiter -->
+  <rect x="240" y="320" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="339" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Rate Limiter</text>
+  <text x="370" y="355" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">300ms / worker · ~16 projects/sec</text>
+
+  <!-- E → F -->
+  <line x1="370" y1="364" x2="370" y2="388" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- F: Fetch Project Data -->
+  <rect x="240" y="390" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="409" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Fetch Project Data</text>
+  <text x="370" y="425" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">7 parallel API calls per project</text>
+
+  <!-- F → G -->
+  <line x1="370" y1="434" x2="370" y2="458" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- G: MD5 -->
+  <rect x="240" y="460" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="479" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">MD5 Checksum</text>
+  <text x="370" y="495" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">Serialize ProjectGeneral → hash</text>
+
+  <!-- G → H -->
+  <line x1="370" y1="504" x2="370" y2="534" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- H: Diamond -->
+  <polygon points="370,534 450,572 370,610 290,572" fill="#111" stroke="#2a2a2a" stroke-width="1.5"/>
+  <text x="370" y="567" font-family="monospace" font-size="10" fill="#888" text-anchor="middle">Snapshot</text>
+  <text x="370" y="581" font-family="monospace" font-size="10" fill="#888" text-anchor="middle">Exists?</text>
+
+  <!-- H → Skip (right) -->
+  <line x1="450" y1="572" x2="570" y2="572" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="510" y="565" font-family="monospace" font-size="8" fill="#3a3a3a" text-anchor="middle">same checksum</text>
+  <rect x="570" y="550" width="90" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="615" y="573" font-family="monospace" font-size="11" fill="#555" text-anchor="middle">Skip</text>
+
+  <!-- H → Insert Project (down center) -->
+  <line x1="370" y1="610" x2="370" y2="644" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="385" y="631" font-family="monospace" font-size="8" fill="#3a3a3a" text-anchor="start">no snapshot</text>
+
+  <!-- J: Insert Project -->
+  <rect x="240" y="646" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="665" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Insert Project</text>
+  <text x="370" y="681" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">upsert · write snapshot</text>
+
+  <!-- H → Detect Changes (left) -->
+  <line x1="290" y1="572" x2="150" y2="572" stroke="#2d2d2d" stroke-width="1.5"/>
+  <line x1="150" y1="572" x2="150" y2="644" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="220" y="564" font-family="monospace" font-size="8" fill="#3a3a3a" text-anchor="middle">diff detected</text>
+
+  <!-- K: Detect Changes -->
+  <rect x="30" y="646" width="200" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="130" y="665" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Detect Changes</text>
+  <text x="130" y="681" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">7 tracked fields</text>
+
+  <!-- K → L -->
+  <line x1="130" y1="690" x2="130" y2="724" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- L: project_changes -->
+  <rect x="30" y="726" width="200" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="130" y="745" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">project_changes</text>
+  <text x="130" y="761" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">field · old · new · detected_at</text>
+
+  <!-- L → PostgreSQL -->
+  <line x1="230" y1="748" x2="285" y2="794" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- J → PostgreSQL -->
+  <line x1="370" y1="690" x2="370" y2="784" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- PostgreSQL -->
+  <rect x="240" y="786" width="260" height="54" rx="5" fill="#0f1a0f" stroke="#4ade8055" stroke-width="1.5"/>
+  <text x="370" y="808" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="500">PostgreSQL</text>
+  <text x="370" y="826" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">projects · snapshots · project_changes</text>
+  <text x="370" y="838" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">crawl_runs</text>
+
+  <!-- PostgreSQL → REST API -->
+  <line x1="370" y1="840" x2="370" y2="864" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- REST API -->
+  <rect x="240" y="866" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="370" y="885" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">REST API</text>
+  <text x="370" y="901" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">Go HTTP server</text>
+
+  <!-- REST API → 4 endpoints -->
+  <line x1="370" y1="910" x2="370" y2="926" stroke="#2d2d2d" stroke-width="1.5"/>
+  <line x1="90" y1="926" x2="650" y2="926" stroke="#2d2d2d" stroke-width="1"/>
+  <line x1="90" y1="926" x2="90" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="256" y1="926" x2="256" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="484" y1="926" x2="484" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="650" y1="926" x2="650" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Endpoint boxes -->
+  <rect x="18" y="946" width="144" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="90" y="965" font-family="monospace" font-size="10" fill="#666" text-anchor="middle">Search</text>
+  <text x="90" y="980" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">Projects</text>
+
+  <rect x="184" y="946" width="144" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="256" y="965" font-family="monospace" font-size="10" fill="#666" text-anchor="middle">Project</text>
+  <text x="256" y="980" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">Details</text>
+
+  <rect x="412" y="946" width="144" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="484" y="965" font-family="monospace" font-size="10" fill="#666" text-anchor="middle">Change</text>
+  <text x="484" y="980" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">History</text>
+
+  <rect x="578" y="946" width="144" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="650" y="965" font-family="monospace" font-size="10" fill="#666" text-anchor="middle">Crawl Run</text>
+  <text x="650" y="980" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">History</text>
+
+  <!-- Update crawl_run note on right -->
+  <line x1="500" y1="187" x2="540" y2="187" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="543" y="183" font-family="monospace" font-size="8" fill="#2d2d2d">updates crawl_run</text>
+  <text x="543" y="194" font-family="monospace" font-size="8" fill="#2d2d2d">on completion</text>
+</svg>

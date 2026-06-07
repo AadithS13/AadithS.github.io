@@ -85,7 +85,7 @@ const projects = [
     badges: ["Go", "PostgreSQL", "Docker", "Data Engineering"],
     stack: ["Go", "PostgreSQL", "Docker", "REST APIs", "Cron", "Data Engineering"],
     github: "https://github.com/AadithS13/InfraLens",
-    architecture: "/projects/infralens-placeholder.svg",
+    architecture: "/projects/infralens-architecture.svg",
     image: "/projects/infralens-placeholder.svg",
     imageAlt: "InfraLens pipeline architecture",
     highlights: [
@@ -143,7 +143,7 @@ const notes = [
     description:
       "A walkthrough of how I reverse engineered MahaRERA's undocumented internal APIs to build InfraLens — covering recon, crawler design, snapshot diffing, and change detection.",
     tags: ["Go", "Data Engineering", "Reverse Engineering", "InfraLens"],
-    status: "draft" as const,
+    status: "published" as "draft" | "published",
   },
 ];
 
