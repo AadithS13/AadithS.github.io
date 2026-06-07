@@ -11,13 +11,19 @@ import {
   Code2,
   FolderOpen,
   Phone,
+  Hammer,
+  GitMerge,
+  Sparkles,
 } from "lucide-react";
 
 const navItems = [
   { id: "about", label: "About", icon: User },
+  { id: "building", label: "Building", icon: Hammer },
   { id: "experience", label: "Experience", icon: Briefcase },
-  { id: "skills", label: "Skills", icon: Code2 },
   { id: "projects", label: "Projects", icon: FolderOpen },
+  { id: "oss", label: "Open Source", icon: GitMerge },
+  { id: "skills", label: "Skills", icon: Code2 },
+  { id: "interests", label: "Interests", icon: Sparkles },
   { id: "contact", label: "Contact", icon: Phone },
 ];
 
