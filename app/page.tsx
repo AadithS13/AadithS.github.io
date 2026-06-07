@@ -13,16 +13,16 @@ const experience = [
     location: "Bangalore, India",
     items: [
       {
+        heading: "Deal Mining Flow",
+        body: "TDD author & lead — ingested RERA and external data sources, built automated pipeline to generate leads, identify new customers, infer project stage, and assign cross-sell deals to BU sales officers. +15% lead generation, +5–10% deal conversion.",
+      },
+      {
         heading: "KYC Deduplication",
         body: "TDD author & cross-team lead — Kafka-orchestrated multi-service flow covering GST/PAN-based duplicate prevention, nudging during creation, and a merge-with-verified-parent flow. Reduced duplicates by 35% and improved reporting accuracy by 25%.",
       },
       {
         heading: "Site Deduplication",
         body: "TDD author & lead — three-layer strategy: prevention via existing-site lookup at creation, pincode-matched nudging to surface similar sites, and geocode-based bulk data cleanup. Cut address duplicates by 30%.",
-      },
-      {
-        heading: "Deal Mining Flow",
-        body: "TDD author & lead — ingested RERA and external data sources, built automated pipeline to generate leads, identify new customers, infer project stage, and assign cross-sell deals to BU sales officers. +15% lead generation, +5–10% deal conversion.",
       },
     ],
   },
@@ -57,8 +57,8 @@ const experience = [
         body: "Led revamp of legacy Customer Service codebase — audited and updated deprecated APIs, created new endpoints, ensured backward compatibility, and completed schema migrations.",
       },
       {
-        heading: "Moonshot Award",
-        body: "Won Moonshot Award at IM Hackathon 2023. Acquired proficiency in Golang and TypeScript through hands-on production work.",
+        heading: "Stack",
+        body: "Acquired proficiency in Golang and TypeScript through hands-on production work.",
       },
     ],
   },
@@ -152,6 +152,15 @@ const notes = [
       "How to detect what changed in an external data source you don't control — checksums, field-level diffing, snapshot storage, and the design tradeoffs at scale.",
     tags: ["Go", "PostgreSQL", "System Design", "Data Engineering"],
     status: "published" as "draft" | "published",
+  },
+];
+
+const awards = [
+  {
+    title: "Moonshot Award",
+    event: "IM Hackathon 2023",
+    org: "Infra.Market",
+    description: "Won Moonshot Award at IM Hackathon 2023.",
   },
 ];
 
@@ -342,6 +351,23 @@ export default function Home() {
                 {i < experience.length - 1 && (
                   <div className="mt-8 border-t border-border" />
                 )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Awards & Recognition ──────────────────────────── */}
+        <section id="awards" className="mb-20 scroll-mt-8">
+          <SectionHeading title="Awards & Recognition" />
+          <div className="space-y-3">
+            {awards.map((award) => (
+              <div key={award.title} className="flex items-start gap-4 border border-border rounded-lg p-5 bg-surface">
+                <span className="text-green text-lg mt-0.5 flex-shrink-0">🏆</span>
+                <div>
+                  <p className="text-base font-semibold text-text">{award.title}</p>
+                  <p className="text-sm text-subtle mt-0.5">{award.description}</p>
+                  <p className="text-xs font-mono text-muted mt-1">{award.event} · {award.org}</p>
+                </div>
               </div>
             ))}
           </div>

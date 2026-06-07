@@ -15,6 +15,7 @@ import {
   GitMerge,
   Sparkles,
   BookOpen,
+  Trophy,
 } from "lucide-react";
 
 const navItems = [
@@ -22,6 +23,7 @@ const navItems = [
   { id: "building", label: "Building", icon: Hammer },
   { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "awards", label: "Awards", icon: Trophy },
   { id: "oss", label: "Open Source", icon: GitMerge },
   { id: "notes", label: "Eng. Notes", icon: BookOpen },
   { id: "skills", label: "Skills", icon: Code2 },
