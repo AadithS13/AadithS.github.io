@@ -79,20 +79,24 @@ const projects = [
     name: "InfraLens",
     emoji: "🚀",
     tagline:
-      "Construction intelligence platform with incremental crawling, change detection, historical tracking, and analytics APIs.",
+      "Construction intelligence platform that crawls MahaRERA, tracks project-level changes over time, delivers real-time notifications, and supports natural language queries.",
     description:
-      "Construction intelligence platform that reverse-engineers public RERA registries, performs idempotent incremental synchronization, tracks project-level changes, and exposes search and analytics APIs over normalized real-estate data.",
-    badges: ["Go", "PostgreSQL", "Docker", "Data Engineering"],
-    stack: ["Go", "PostgreSQL", "Docker", "REST APIs", "Cron", "Data Engineering"],
+      "InfraLens is a construction intelligence platform that crawls MahaRERA, tracks project-level changes over time, delivers real-time notifications through email and webhooks, provides relevance-ranked search, and supports natural language queries powered by rule-based and LLM-assisted search.\n\nBuilt with Go, PostgreSQL, pg_trgm, cron scheduling, SMTP/webhook adapters, and Claude-powered query parsing.",
+    badges: ["Go", "PostgreSQL", "pg_trgm", "Claude API"],
+    stack: ["Go", "PostgreSQL", "pg_trgm", "Cron", "SMTP", "Webhooks", "Claude API"],
     github: "https://github.com/AadithS13/InfraLens",
     architecture: "/projects/infralens-architecture.svg",
     image: "/projects/infralens-placeholder.svg",
     imageAlt: "InfraLens pipeline architecture",
     highlights: [
-      "Reverse-engineered undocumented MahaRERA APIs for incremental data sync",
-      "Idempotent crawl pipeline with snapshot diffing for change detection and history tracking",
-      "Normalized real-estate data exposed through search and analytics APIs",
-      "Cron-driven pipeline with deduplication logic",
+      "Reverse engineered 7 undocumented MahaRERA APIs",
+      "Built idempotent crawler with snapshot-based change detection",
+      "Tracks field-level project history over time",
+      "Notification engine with Email + Webhook adapters",
+      "Full-text search using PostgreSQL pg_trgm",
+      "Natural language search using rule-based and Claude-powered parsing",
+      "Layered architecture (Handler → Core → Repo)",
+      "Scheduled crawling with audit history and analytics APIs",
     ],
   },
   {
@@ -271,11 +275,16 @@ export default function Home() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-muted leading-relaxed mb-4">
-                    {project.description}
-                  </p>
+                  <div className="space-y-2 mb-4">
+                    {project.description.split("\n\n").map((para, i) => (
+                      <p key={i} className="text-sm text-muted leading-relaxed">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
 
                   {/* Highlights */}
+                  <p className="text-xs font-mono text-muted uppercase tracking-widest mb-2">Highlights</p>
                   <ul className="space-y-1.5 mb-5">
                     {project.highlights.map((h) => (
                       <li key={h} className="flex items-start gap-2 text-sm text-subtle">
