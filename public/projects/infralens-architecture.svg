@@ -1,9 +1,12 @@
-<svg width="760" height="1020" xmlns="http://www.w3.org/2000/svg">
-  <rect width="760" height="1020" fill="#0a0a0a"/>
+<svg width="760" height="1300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="760" height="1300" fill="#0a0a0a"/>
 
   <defs>
     <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M0,1 L7,4 L0,7 Z" fill="#2d2d2d"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,1 L7,4 L0,7 Z" fill="#3b5a8a"/>
     </marker>
   </defs>
 
@@ -123,6 +126,31 @@
   <text x="130" y="745" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">project_changes</text>
   <text x="130" y="761" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">field · old · new · detected_at</text>
 
+  <!-- ══ NOTIFICATION ENGINE (right column) ══════════════════ -->
+  <!-- K → Notify -->
+  <line x1="230" y1="668" x2="580" y2="668" stroke="#2d2d2d" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="580" y1="668" x2="580" y2="690" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="440" y="661" font-family="monospace" font-size="8" fill="#3a3a3a" text-anchor="middle">on change</text>
+
+  <!-- Notification Engine box -->
+  <rect x="516" y="692" width="214" height="44" rx="5" fill="#0f0f1a" stroke="#60a5fa44" stroke-width="1.5"/>
+  <text x="623" y="711" font-family="monospace" font-size="11" fill="#60a5fa" text-anchor="middle">Notification Engine</text>
+  <text x="623" y="727" font-family="monospace" font-size="9" fill="#445" text-anchor="middle">fan-out to adapters</text>
+
+  <!-- Notification → SMTP + Webhook -->
+  <line x1="623" y1="736" x2="623" y2="752" stroke="#2d2d2d" stroke-width="1.5"/>
+  <line x1="555" y1="752" x2="691" y2="752" stroke="#2d2d2d" stroke-width="1"/>
+  <line x1="555" y1="752" x2="555" y2="770" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="691" y1="752" x2="691" y2="770" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="504" y="772" width="100" height="36" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="554" y="791" font-family="monospace" font-size="10" fill="#555" text-anchor="middle">SMTP</text>
+  <text x="554" y="803" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">Email</text>
+
+  <rect x="641" y="772" width="100" height="36" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="691" y="791" font-family="monospace" font-size="10" fill="#555" text-anchor="middle">Webhook</text>
+  <text x="691" y="803" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">HTTP POST</text>
+
   <!-- L → PostgreSQL -->
   <line x1="230" y1="748" x2="285" y2="794" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
 
@@ -133,7 +161,7 @@
   <rect x="240" y="786" width="260" height="54" rx="5" fill="#0f1a0f" stroke="#4ade8055" stroke-width="1.5"/>
   <text x="370" y="808" font-family="monospace" font-size="13" fill="#4ade80" text-anchor="middle" font-weight="500">PostgreSQL</text>
   <text x="370" y="826" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">projects · snapshots · project_changes</text>
-  <text x="370" y="838" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">crawl_runs</text>
+  <text x="370" y="838" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">crawl_runs · subscriptions</text>
 
   <!-- PostgreSQL → REST API -->
   <line x1="370" y1="840" x2="370" y2="864" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -141,9 +169,9 @@
   <!-- REST API -->
   <rect x="240" y="866" width="260" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
   <text x="370" y="885" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">REST API</text>
-  <text x="370" y="901" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">Go HTTP server</text>
+  <text x="370" y="901" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">Go HTTP server · Handler → Core → Repo</text>
 
-  <!-- REST API → 4 endpoints -->
+  <!-- REST API → 4 endpoints (row 1) -->
   <line x1="370" y1="910" x2="370" y2="926" stroke="#2d2d2d" stroke-width="1.5"/>
   <line x1="90" y1="926" x2="650" y2="926" stroke="#2d2d2d" stroke-width="1"/>
   <line x1="90" y1="926" x2="90" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -151,7 +179,7 @@
   <line x1="484" y1="926" x2="484" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
   <line x1="650" y1="926" x2="650" y2="944" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <!-- Endpoint boxes -->
+  <!-- Endpoint boxes row 1 -->
   <rect x="18" y="946" width="144" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
   <text x="90" y="965" font-family="monospace" font-size="10" fill="#666" text-anchor="middle">Search</text>
   <text x="90" y="980" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">Projects</text>
@@ -167,6 +195,34 @@
   <rect x="578" y="946" width="144" height="44" rx="5" fill="#111" stroke="#1e1e1e"/>
   <text x="650" y="965" font-family="monospace" font-size="10" fill="#666" text-anchor="middle">Crawl Run</text>
   <text x="650" y="980" font-family="monospace" font-size="10" fill="#444" text-anchor="middle">History</text>
+
+  <!-- ══ ROW 2: Analytics + NLP/LLM ══════════════════════════ -->
+  <!-- Connector from REST API center down to row 2 horizontal bar -->
+  <line x1="370" y1="990" x2="370" y2="1016" stroke="#2d2d2d" stroke-width="1.5"/>
+  <line x1="185" y1="1016" x2="555" y2="1016" stroke="#2d2d2d" stroke-width="1"/>
+  <line x1="185" y1="1016" x2="185" y2="1034" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="555" y1="1016" x2="555" y2="1034" stroke="#2d2d2d" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- Analytics API box -->
+  <rect x="100" y="1036" width="170" height="54" rx="5" fill="#111" stroke="#1e1e1e"/>
+  <text x="185" y="1058" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">Analytics API</text>
+  <text x="185" y="1074" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">crawl trends · field change stats</text>
+  <text x="185" y="1085" font-family="monospace" font-size="9" fill="#333" text-anchor="middle">project velocity · audit history</text>
+
+  <!-- NLP / LLM Search box (blue accent) -->
+  <rect x="470" y="1036" width="170" height="54" rx="5" fill="#0f0f1a" stroke="#60a5fa44" stroke-width="1.5"/>
+  <text x="555" y="1058" font-family="monospace" font-size="11" fill="#60a5fa" text-anchor="middle">NLP / LLM Search</text>
+  <text x="555" y="1074" font-family="monospace" font-size="9" fill="#445" text-anchor="middle">rule-based + Claude parsing</text>
+  <text x="555" y="1085" font-family="monospace" font-size="9" fill="#2d3a4a" text-anchor="middle">intent → structured filters</text>
+
+  <!-- NLP → Claude API -->
+  <line x1="555" y1="1090" x2="555" y2="1118" stroke="#3b5a8a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-blue)"/>
+
+  <!-- Claude API box -->
+  <rect x="470" y="1120" width="170" height="54" rx="5" fill="#0a0a14" stroke="#60a5fa55" stroke-width="1.5"/>
+  <text x="555" y="1142" font-family="monospace" font-size="11" fill="#60a5fa" text-anchor="middle">Claude API</text>
+  <text x="555" y="1158" font-family="monospace" font-size="9" fill="#445" text-anchor="middle">query → filters · JSON response</text>
+  <text x="555" y="1170" font-family="monospace" font-size="9" fill="#2d3a4a" text-anchor="middle">fallback to rule-based parser</text>
 
   <!-- Update crawl_run note on right -->
   <line x1="500" y1="187" x2="540" y2="187" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="3,3"/>

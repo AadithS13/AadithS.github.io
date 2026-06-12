@@ -98,6 +98,15 @@ const projects = [
       "Layered architecture (Handler → Core → Repo)",
       "Scheduled crawling with audit history and analytics APIs",
     ],
+    evolution: [
+      { version: "V1", label: "Data Ingestion" },
+      { version: "V2", label: "Change Detection" },
+      { version: "V3", label: "Search APIs" },
+      { version: "V4", label: "Scheduling & Analytics" },
+      { version: "V5", label: "Notification Platform" },
+      { version: "V6", label: "Search & Discovery" },
+      { version: "V7", label: "AI-Powered Search" },
+    ],
   },
   {
     name: "FlowOrchestrator",
@@ -211,7 +220,7 @@ export default function Home() {
           {/* Hero tagline */}
           <p className="text-xl text-text font-medium leading-snug mb-5">
             Backend Engineer building distributed systems, data platforms, and
-            workflow automation using Go.
+            AI-powered search systems using Go.
           </p>
 
           <p className="text-base text-subtle leading-relaxed">
@@ -293,6 +302,35 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
+
+                  {/* Evolution timeline */}
+                  {"evolution" in project && project.evolution && (
+                    <div className="mb-5 pt-4 border-t border-border">
+                      <p className="text-xs font-mono text-muted uppercase tracking-widest mb-3">
+                        InfraLens Evolution
+                      </p>
+                      <div className="flex flex-wrap items-center gap-x-1 gap-y-2">
+                        {project.evolution.map((step, idx) => (
+                          <div key={step.version} className="flex items-center gap-1">
+                            <span
+                              className={`text-xs font-mono px-2 py-0.5 rounded ${
+                                idx === project.evolution!.length - 1
+                                  ? "bg-green/10 text-green border border-green/30"
+                                  : "bg-border text-subtle border border-border"
+                              }`}
+                            >
+                              <span className="font-semibold">{step.version}</span>
+                              <span className="text-muted mx-1">·</span>
+                              {step.label}
+                            </span>
+                            {idx < project.evolution!.length - 1 && (
+                              <span className="text-muted text-xs">→</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Badges row */}
                   <div className="flex flex-wrap gap-2 mb-5">
