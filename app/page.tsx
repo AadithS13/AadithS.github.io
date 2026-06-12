@@ -178,10 +178,10 @@ const awards = [
 ];
 
 const currentlyBuilding = [
-  "InfraLens V5 — Notification Engine",
-  "InfraLens V6 — Duplicate Detection",
-  "OSS contributions to the Redis ecosystem",
-  "Learning Distributed Systems and Database Internals",
+  "InfraLens — Builder Risk Intelligence & AI Search",
+  "Agentic AI systems using Go, RAG, and tool calling",
+  "OSS contributions to GoFr and the Redis ecosystem",
+  "Learning Database Internals and Distributed Systems",
 ];
 
 const interests = [
